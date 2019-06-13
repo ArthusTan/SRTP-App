@@ -4,62 +4,64 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-    <include layout="@layout/bar"/>
+    android:orientation="vertical">
+
+    <include layout="@layout/bar" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingBottom="50dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingTop="50dp"
-        android:paddingBottom="50dp">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        >
-        <ImageButton
-            android:id="@+id/iB_takephoto"
+        android:paddingTop="50dp">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:scaleType="fitCenter"
-            android:onClick="takePoto"
-            android:src="@drawable/takephoto" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        >
-        <ImageButton
-            android:id="@+id/iB_choose"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+            <ImageButton
+                android:id="@+id/iB_takephoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:onClick="takePoto"
+                android:scaleType="fitCenter"
+                android:src="@drawable/takephoto" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:src="@drawable/choose"
-            android:onClick="choosePhone"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        >
-        <ImageButton
-            android:id="@+id/iB_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:src="@drawable/history"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+            <ImageButton
+                android:id="@+id/iB_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:onClick="choosePhone"
+                android:scaleType="fitCenter"
+                android:src="@drawable/choose" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+
+            <ImageButton
+                android:id="@+id/iB_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                android:src="@drawable/history" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

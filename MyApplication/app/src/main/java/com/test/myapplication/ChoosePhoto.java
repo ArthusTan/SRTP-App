@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
 import com.test.myapplication.deeplearning.Comfirm;
 import com.test.myapplication.deeplearning.GetInfo;
 import com.test.myapplication.objects.Position;
@@ -36,8 +39,22 @@ public class ChoosePhoto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_photo);
+
+        SDKInitializer.initialize(ChoosePhoto.this);
+        SDKInitializer.setCoordType(CoordType.BD09LL);
+
         mLocationClient = new LocationClient(getApplicationContext());
-        mLocationClient.registerLocationListener(new MyLocationListener());
+        mLocationClient.registerLocationListener(new MyMyLocationListener());
+
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        option.setCoorType("bd09ll");
+        option.setScanSpan(1000);
+        option.setOpenGps(true);
+        option.setLocationNotify(true);
+        option.setIgnoreKillProcess(false);
+        mLocationClient.setLocOption(option);
+
         mLocationClient.start();
 
 
@@ -90,6 +107,9 @@ public class ChoosePhoto extends AppCompatActivity {
                     String tmp_info = info.Search();
 
                     Position.strURL = tmp_info;
+
+                    Toast.makeText(ChoosePhoto.this, Position.strLAT + " , " + Position.strLON, Toast.LENGTH_LONG).show();
+
                     Position.write();
 
 //                    Toast.makeText(ChoosePhoto.this,"GetInfo:"+tmp_info,Toast.LENGTH_LONG).show();
@@ -136,7 +156,7 @@ public class ChoosePhoto extends AppCompatActivity {
     }
 
 
-    public class MyLocationListener implements BDLocationListener {
+    public class MyMyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(final BDLocation location) {
             runOnUiThread(new Runnable() {
@@ -145,8 +165,23 @@ public class ChoosePhoto extends AppCompatActivity {
 //                    StringBuilder currentPosition = new StringBuilder();
 //                    currentPosition.append("纬度").append(location.getLatitude()).append(",经线").append(location.getLongitude());
 //                    Toast.makeText(ChoosePhoto.this, currentPosition, Toast.LENGTH_LONG).show();
+
+                    //5#804 39.993948,116.367319
+                    //ERROR 39.988437,116.360717
+                    //DELTA 00.005511,000.006602
+
+//                    Position.LATITUDE = location.getLatitude() + 00.005511;
+//                    Position.LONGITUDE = location.getLongitude() + 000.006602;
                     Position.LATITUDE = location.getLatitude();
                     Position.LONGITUDE = location.getLongitude();
+
+//                    double y = location.getLatitude();
+//                    double x = location.getLongitude();
+//                    double z = Math.sqrt(x*x+y*y) + 0.00002 *Math.sin(y*Math.PI);
+//                    double temp =Math.atan2(y, x)  + 0.000003 * Math.cos(x*Math.PI);
+//
+//                    Position.LATITUDE = z * Math.sin(temp) + 0.006;
+//                    Position.LONGITUDE = z * Math.cos(temp) + 0.0065;
                 }
             });
         }

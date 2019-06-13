@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/bar"/>
+
+    <include layout="@layout/bar" />
+
     <WebView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/webView"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

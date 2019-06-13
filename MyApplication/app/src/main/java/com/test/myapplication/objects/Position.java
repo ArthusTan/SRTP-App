@@ -19,6 +19,7 @@ public class Position {
     public static void write() {
         init();
         String str = strLAT + "," + strLON + "," + strIMG + "," + strURL + "\n";
+//        System.out.println(strLAT + "  ,  " + strLON);
         File file = new File("/sdcard/flower-comf/mapInfo.txt");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file, true);
